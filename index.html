@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="منيو برجولة العذراء والملاك ميخائيل — كافيه ومطعم في شبرا، القاهرة. اطلب عبر واتساب.">
+<meta name="theme-color" content="#fdfbf7">
 <title>برجولة العذراء والملاك ميخائيل</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,8 +20,8 @@
   --muted: #8e8883;
   --line: rgba(139, 115, 91, 0.15);
   --text-dark: #2c2824;
-  box-sizing: border-box;
-  padding-top: env(safe-area-inset-top, 0px);
+  --header-h: 70px;
+  --sticky-h: 140px;
 }
 
 html { scroll-behavior: smooth; scroll-padding-top: 118px; height: 100%; }
@@ -35,7 +37,7 @@ body {
   background-image: radial-gradient(circle at 2px 2px, var(--line) 1px, transparent 0);
   background-size: 40px 40px;
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
 }
 
@@ -248,6 +250,25 @@ footer a.phone { color: var(--primary); font-weight: 700; }
   transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none;
 }
 .toast.show { opacity: 1; transform: translateX(-50%) translateY(-10px); }
+
+/* ---- fixes ---- */
+html { height: auto; scroll-padding-top: var(--sticky-h); }
+body { padding-bottom: 0; }
+button { font-family: inherit; }
+.chipnav { top: var(--header-h); }
+.category { scroll-margin-top: 0; }
+.item-info { min-width: 0; }
+.item .price { white-space: nowrap; }
+.bottombar { gap: 8px; padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px)); }
+.bottombar a, .bottombar button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px; border-radius: 14px; font-weight: 700; font-size: 14px; padding: 13px 6px; cursor: pointer; border: none; }
+.bottombar .map, .bottombar .order { background: var(--panel); color: var(--primary); border: 1px solid var(--primary); }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; box-shadow: none; filter: none; }
+.add-btn .badge { display: inline-block; min-width: 18px; padding: 0 6px; margin-inline-start: 6px; border-radius: 10px; background: var(--accent); color: var(--text-dark); font-size: 12px; font-weight: 800; }
+.empty-cart { text-align: center; color: var(--muted); padding: 30px 0; }
+.size-card h2 { margin-bottom: 8px; }
+.size-card .size-item { margin: 0 0 24px; color: var(--muted); font-size: 14px; }
+.size-cancel { margin-top: 16px; background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; padding: 8px; }
+body.no-scroll { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -262,14 +283,15 @@ footer a.phone { color: var(--primary); font-weight: 700; }
   <symbol id="ic-sandwich" viewBox="0 0 24 24"><path d="M3 11.5 12 5l9 6.5v2H3v-2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M4 15.5h16l-1.4 3.4a2 2 0 0 1-1.9 1.3H7.3a2 2 0 0 1-1.9-1.3L4 15.5Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7 11.5c.6-1 1.2-1 1.8 0M12 11.5c.6-1 1.2-1 1.8 0M16 11.5c.6-1 1.2-1 1.8 0" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
   <symbol id="ic-grill" viewBox="0 0 24 24"><path d="M4 12h16M6 12l1.3 6.4A1.8 1.8 0 0 0 9 20h6a1.8 1.8 0 0 0 1.7-1.6L18 12" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12V9.5M12 12V8M16 12V9.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="8" cy="7.8" r="1.3" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="6.3" r="1.3" stroke="currentColor" stroke-width="1.4"/><circle cx="16" cy="7.8" r="1.3" stroke="currentColor" stroke-width="1.4"/></symbol>
   <symbol id="ic-phone" viewBox="0 0 24 24"><path d="M6 3.5c1 0 2.7 2 2.9 3.2.15.9-.6 1.5-1.2 2.1-.5.5-.5 1 0 1.9 1 1.9 2.5 3.4 4.4 4.4.9.5 1.4.5 1.9 0 .6-.6 1.2-1.35 2.1-1.2 1.2.2 3.2 1.9 3.2 2.9 0 1.7-1.9 3.3-3.5 3.3-5.2 0-13.3-8.1-13.3-13.3 0-1.6 1.6-3.5 3.3-3.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></symbol>
-  <symbol id="ic-cart" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4 8H5l4-8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/></symbol>
+  <symbol id="ic-cart" viewBox="0 0 24 24"><path d="M3 4h2.2l2 10.2a1.6 1.6 0 0 0 1.6 1.3h8.1a1.6 1.6 0 0 0 1.6-1.2L20 8H6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19.5" r="1.4" fill="currentColor"/><circle cx="17" cy="19.5" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="ic-map" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.7-6.5-11a6.5 6.5 0 0 1 13 0c0 5.3-6.5 11-6.5 11Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.3" fill="none" stroke="currentColor" stroke-width="1.6"/></symbol>
 </svg>
 
-<img src="https://cdn-icons-png.flaticon.com/512/2906/2906279.png" class="bg-ornament" alt="ornament">
+<svg class="bg-ornament" viewBox="0 0 24 24" fill="none" stroke="#6d5a47" stroke-width="1" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M5 12h14"/></svg>
 
 <header>
   <div class="headbar">
-    <span class="brandname">برجولة العذراء والملاك<small>كافيه وريستوران — شبرا</small></span>
+    <span class="brandname">برجولة العذراء والملاك<small>كافيه ومطعم — شبرا</small></span>
   </div>
 </header>
 
@@ -278,11 +300,12 @@ footer a.phone { color: var(--primary); font-weight: 700; }
     <div class="hero-symbol">
       <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 12h14"/></svg>
     </div>
-    <h1>مساء دافي بين النجوم</h1>
-    <p class="tag">عصاير طازجة، مشروبات ساخنة، وافيل، مكرونات وسندوتشات — سهرة مختلفة جوه جنينة تحت السما.</p>
+    <h1>مساء دافئ بين النجوم</h1>
+    <p class="tag">عصائر طازجة، مشروبات ساخنة، وافيل، مكرونات وسندوتشات — سهرة مختلفة داخل حديقة تحت السماء.</p>
     <div class="cta">
-      <a class="btn primary" href="#juices">شوف المنيو</a>
-      <a class="btn ghost" href="tel:01286086219">اتصل بينا</a>
+      <a class="btn primary" href="#juices">شاهد المنيو</a>
+      <a class="btn ghost" href="tel:01039525005">اتصل بنا</a>
+      <a class="btn ghost" href="https://maps.app.goo.gl/vNo81EMpMim68cmR7" target="_blank" rel="noopener">موقعنا على الخريطة</a>
     </div>
   </div>
   <hr class="divider">
@@ -305,7 +328,7 @@ footer a.phone { color: var(--primary); font-weight: 700; }
 
 <section class="category" id="juices">
   <h2><svg class="cat-icon"><use href="#ic-juice"/></svg>عصائر ومشروبات باردة</h2>
-  <p class="sub">عصير فريش — ممنوع دخول المأكولات والمشروبات من بره</p>
+  <p class="sub">عصائر فريش — يُمنع دخول المأكولات والمشروبات من الخارج</p>
   <div class="items">
     <div class="item" data-id="j1" data-price="45"><div class="item-info"><span class="name">مانجو</span><span class="price">45 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="j2" data-price="35"><div class="item-info"><span class="name">بطيخ</span><span class="price">35 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -317,10 +340,10 @@ footer a.phone { color: var(--primary); font-weight: 700; }
   </div>
   <div class="group-label">صودا ومشروبات غازية</div>
   <div class="items">
-    <div class="item" data-id="s1" data-price="17" data-has-sizes="true" data-sizes='[{"label":"صغير","id":"small"},{"label":"كبير","id":"large"}]'><div class="item-info"><span class="name">بيبسي (صغير/كبير)</span><span class="price">17/20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="s2" data-price="17" data-has-sizes="true" data-sizes='[{"label":"صغير","id":"small"},{"label":"كبير","id":"large"}]'><div class="item-info"><span class="name">سفن أب (صغير/كبير)</span><span class="price">17/20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="s3" data-price="25"><div class="item-info"><span class="name">بريل</span><span class="price">25 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="s4" data-price="17"><div class="item-info"><span class="name">أناناس / رمان / شوبس ليمون</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="s1" data-name="بيبسي" data-sizes='[{"label":"صغير","id":"small","price":17},{"label":"كبير","id":"large","price":20}]'><div class="item-info"><span class="name">بيبسي (صغير/كبير)</span><span class="price">17/20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="s2" data-name="سفن أب" data-sizes='[{"label":"صغير","id":"small","price":17},{"label":"كبير","id":"large","price":20}]'><div class="item-info"><span class="name">سفن أب (صغير/كبير)</span><span class="price">17/20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="s3" data-price="25"><div class="item-info"><span class="name">بيريل</span><span class="price">25 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="s4" data-price="17"><div class="item-info"><span class="name">أناناس / رمان / شويبس ليمون</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="s5" data-price="15"><div class="item-info"><span class="name">عصير بيتي</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="s6" data-price="17"><div class="item-info"><span class="name">مكس شوكولاتة</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="s7" data-price="30"><div class="item-info"><span class="name">موهيتو ليمون</span><span class="price">30 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -333,22 +356,22 @@ footer a.phone { color: var(--primary); font-weight: 700; }
 <section class="category" id="hot">
   <h2><svg class="cat-icon"><use href="#ic-hot"/></svg>المشروبات الساخنة</h2>
   <div class="items">
-    <div class="item" data-id="h1" data-price="12" data-has-sizes="true" data-sizes='[{"label":"عادي","id":"reg"},{"label":"فتلة","id":"tea"}]'><div class="item-info"><span class="name">شاي عادي / فتلة</span><span class="price">12/15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="h1" data-name="شاي" data-sizes='[{"label":"عادي","id":"reg","price":12},{"label":"فتلة","id":"tea","price":15}]'><div class="item-info"><span class="name">شاي عادي / فتلة</span><span class="price">12/15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h2" data-price="17"><div class="item-info"><span class="name">شاي أخضر</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h3" data-price="17"><div class="item-info"><span class="name">ينسون</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h4" data-price="17"><div class="item-info"><span class="name">نعناع</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h5" data-price="17"><div class="item-info"><span class="name">شاي بالنعناع</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h6" data-price="30"><div class="item-info"><span class="name">شاي بلبن</span><span class="price">30 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="h7" data-price="25" data-has-sizes="true" data-sizes='[{"label":"صغير","id":"small"},{"label":"دبل","id":"double"}]'><div class="item-info"><span class="name">قهوة تركي (صغير/دبل)</span><span class="price">25/50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="h8" data-price="35"><div class="item-info"><span class="name">قهوة فرنساوي</span><span class="price">35 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="h9" data-price="30" data-has-sizes="true" data-sizes='[{"label":"صغير","id":"small"},{"label":"كبير","id":"large"}]'><div class="item-info"><span class="name">إسبريسو</span><span class="price">30/50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="h7" data-name="قهوة تركي" data-sizes='[{"label":"صغير","id":"small","price":25},{"label":"دبل","id":"double","price":50}]'><div class="item-info"><span class="name">قهوة تركي (صغير/دبل)</span><span class="price">25/50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="h8" data-price="35"><div class="item-info"><span class="name">قهوة فرنسية</span><span class="price">35 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="h9" data-name="إسبريسو" data-sizes='[{"label":"صغير","id":"small","price":30},{"label":"كبير","id":"large","price":50}]'><div class="item-info"><span class="name">إسبريسو</span><span class="price">30/50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h10" data-price="55"><div class="item-info"><span class="name">كابتشينو</span><span class="price">55 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h11" data-price="50"><div class="item-info"><span class="name">لاتيه</span><span class="price">50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h12" data-price="50"><div class="item-info"><span class="name">فلات وايت</span><span class="price">50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h13" data-price="40"><div class="item-info"><span class="name">ماكياتو</span><span class="price">40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h14" data-price="50"><div class="item-info"><span class="name">موكا شوكولاتة</span><span class="price">50 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h15" data-price="35"><div class="item-info"><span class="name">أمريكانو</span><span class="price">35 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="h16" data-price="15"><div class="item-info"><span class="name">نسكافيه بالك</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="h16" data-price="15"><div class="item-info"><span class="name">نسكافيه بلاك</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h17" data-price="17"><div class="item-info"><span class="name">كوفي بريك</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h18" data-price="20"><div class="item-info"><span class="name">نسكافيه 3×1</span><span class="price">20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="h19" data-price="25"><div class="item-info"><span class="name">نسكافيه بالنكهات</span><span class="price">25 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -385,11 +408,11 @@ footer a.phone { color: var(--primary); font-weight: 700; }
 
 <section class="category" id="waffle">
   <h2><svg class="cat-icon"><use href="#ic-waffle"/></svg>منيو الوافيل</h2>
-  <p class="sub">يوجد وافيل صيامي — إكسترا صوصات 10 / إكسترا آيس كريم 20</p>
+  <p class="sub">يوجد وافيل صيامي — إكسترا صوصات 10 ج.م / إكسترا آيس كريم 20 ج.م</p>
   <div class="items">
-    <div class="item" data-id="w1" data-price="25" data-has-sizes="true" data-sizes='[{"label":"وسط","id":"medium"},{"label":"كبير","id":"large"}]'><div class="item-info"><span class="name">وافيل عسل وفواكه</span><span class="price">25/40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="w2" data-price="25" data-has-sizes="true" data-sizes='[{"label":"وسط","id":"medium"},{"label":"كبير","id":"large"}]'><div class="item-info"><span class="name">وافيل صوصات (كراميل، أوريو، بندق، لوتس، وايت شوكولاتة، نوتيلا)</span><span class="price">25/45 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="w3" data-price="25" data-has-sizes="true" data-sizes='[{"label":"وسط","id":"medium"},{"label":"كبير","id":"large"}]'><div class="item-info"><span class="name">وافيل آيس كريم (مانجو، فراولة، لبان، أوريو، فانيليا، شوكولاتة)</span><span class="price">25/45 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="w1" data-name="وافيل عسل وفواكه" data-sizes='[{"label":"وسط","id":"medium","price":25},{"label":"كبير","id":"large","price":40}]'><div class="item-info"><span class="name">وافيل عسل وفواكه</span><span class="price">25/40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="w2" data-name="وافيل صوصات" data-sizes='[{"label":"وسط","id":"medium","price":25},{"label":"كبير","id":"large","price":45}]'><div class="item-info"><span class="name">وافيل صوصات (كراميل، أوريو، بندق، لوتس، وايت شوكولاتة، نوتيلا)</span><span class="price">25/45 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="w3" data-name="وافيل آيس كريم" data-sizes='[{"label":"وسط","id":"medium","price":25},{"label":"كبير","id":"large","price":45}]'><div class="item-info"><span class="name">وافيل آيس كريم (مانجو، فراولة، لبان، أوريو، فانيليا، شوكولاتة)</span><span class="price">25/45 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
   </div>
 </section>
 
@@ -407,7 +430,7 @@ footer a.phone { color: var(--primary); font-weight: 700; }
     <div class="item" data-id="p9" data-price="80"><div class="item-info"><span class="name">وايت صوص استربس</span><span class="price">80 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="p10" data-price="70"><div class="item-info"><span class="name">وايت صوص كفتة</span><span class="price">70 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="p11" data-price="65"><div class="item-info"><span class="name">تونة</span><span class="price">65 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="p12" data-price="40"><div class="item-info"><span class="name">ساده</span><span class="price">40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="p12" data-price="40"><div class="item-info"><span class="name">سادة</span><span class="price">40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="p13" data-price="75"><div class="item-info"><span class="name">مشروم / جمبري</span><span class="price">75 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="p14" data-price="40"><div class="item-info"><span class="name">خضار (صيامي)</span><span class="price">40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="p15" data-price="65"><div class="item-info"><span class="name">استربس أو كفتة (صيامي)</span><span class="price">65 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -418,7 +441,7 @@ footer a.phone { color: var(--primary); font-weight: 700; }
   <h2><svg class="cat-icon"><use href="#ic-sandwich"/></svg>سندوتشات</h2>
   <div class="group-label">عيش بلدي</div>
   <div class="items">
-    <div class="item" data-id="sw1" data-price="20"><div class="item-info"><span class="name">مرتديال</span><span class="price">20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="sw1" data-price="20"><div class="item-info"><span class="name">مرتديلا</span><span class="price">20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="sw2" data-price="20"><div class="item-info"><span class="name">جبنة رومي</span><span class="price">20 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="sw3" data-price="17"><div class="item-info"><span class="name">جبنة بيضاء</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="sw4" data-price="15"><div class="item-info"><span class="name">بيض مسلوق</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -434,14 +457,14 @@ footer a.phone { color: var(--primary); font-weight: 700; }
   </div>
   <div class="group-label">عيش سوري</div>
   <div class="items">
-    <div class="item" data-id="sy1" data-price="20"><div class="item-info"><span class="name">بطاطس كاتشب</span><span class="price">20/40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="sy1" data-name="بطاطس كاتشب" data-sizes='[{"label":"صغير","id":"small","price":20},{"label":"كبير","id":"large","price":40}]'><div class="item-info"><span class="name">بطاطس كاتشب</span><span class="price">20/40 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="sy2" data-price="10"><div class="item-info"><span class="name">فول</span><span class="price">10 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="sy3" data-price="10"><div class="item-info"><span class="name">طعمية</span><span class="price">10 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="sy4" data-price="15"><div class="item-info"><span class="name">بطاطس</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
   </div>
   <div class="group-label">عيش فينو</div>
   <div class="items">
-    <div class="item" data-id="fn1" data-price="22"><div class="item-info"><span class="name">مرتديال</span><span class="price">22 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="fn1" data-price="22"><div class="item-info"><span class="name">مرتديلا</span><span class="price">22 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="fn2" data-price="22"><div class="item-info"><span class="name">جبنة رومي</span><span class="price">22 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="fn3" data-price="17"><div class="item-info"><span class="name">جبنة بيضاء</span><span class="price">17 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="fn4" data-price="15"><div class="item-info"><span class="name">بيض مسلوق</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -454,7 +477,7 @@ footer a.phone { color: var(--primary); font-weight: 700; }
     <div class="item" data-id="fn11" data-price="75"><div class="item-info"><span class="name">شاورما فراخ</span><span class="price">75 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="fn12" data-price="85"><div class="item-info"><span class="name">استربس</span><span class="price">85 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="fn13" data-price="75"><div class="item-info"><span class="name">حواوشي</span><span class="price">75 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
-    <div class="item" data-id="fn14" data-price="85"><div class="item-info"><span class="name">حواوشي مرتديال</span><span class="price">85 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="fn14" data-price="85"><div class="item-info"><span class="name">حواوشي مرتديلا</span><span class="price">85 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="fn15" data-price="15"><div class="item-info"><span class="name">بطاطس</span><span class="price">15 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
   </div>
 </section>
@@ -462,7 +485,7 @@ footer a.phone { color: var(--primary); font-weight: 700; }
 <section class="category" id="grill" style="border-bottom:none;">
   <h2><svg class="cat-icon"><use href="#ic-grill"/></svg>مشاوي وكريب مميز</h2>
   <div class="items">
-    <div class="item" data-id="g1" data-price="65"><div class="item-info"><span class="name">مرتديال مدخن</span><span class="price">65 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
+    <div class="item" data-id="g1" data-price="65"><div class="item-info"><span class="name">مرتديلا مدخن</span><span class="price">65 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="g2" data-price="125"><div class="item-info"><span class="name">شاورما مكس</span><span class="price">125 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="g3" data-price="110"><div class="item-info"><span class="name">شيش طاووق</span><span class="price">110 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
     <div class="item" data-id="g4" data-price="75"><div class="item-info"><span class="name">كبدة</span><span class="price">75 ج.م</span></div><div class="item-ctrl"><button class="add-btn">إضافة +</button></div></div>
@@ -485,18 +508,19 @@ footer a.phone { color: var(--primary); font-weight: 700; }
 
 <footer>
   <div class="fname">برجولة العذراء والملاك ميخائيل</div>
-  <div class="row">شبرا، القاهرة</div>
-  <div class="row">للحجز والاستفسار: <a class="phone" href="tel:01286086219">01286086219</a></div>
+  <div class="row">شبرا، القاهرة — <a class="phone" href="https://maps.app.goo.gl/vNo81EMpMim68cmR7" target="_blank" rel="noopener">افتح الموقع على الخريطة</a></div>
+  <div class="row">للحجز والاستفسار: <a class="phone" href="tel:01039525005">01039525005</a></div>
   <div class="row">تابعونا على فيسبوك — برجولة العذراء والملاك</div>
 </footer>
 
 <div class="bottombar">
-  <a class="call" href="tel:01286086219"><svg><use href="#ic-phone"/></svg>اتصل بينا</a>
-  <a class="order" id="btn-open-cart"><img src="images/Firefly_RemoveBackground.png" style="width:18px; height:18px; object-fit:contain;">سلة الطلبات</a>
+  <a class="call" href="tel:01039525005"><svg><use href="#ic-phone"/></svg>اتصل بنا</a>
+  <a class="map" href="https://maps.app.goo.gl/vNo81EMpMim68cmR7" target="_blank" rel="noopener"><svg><use href="#ic-map"/></svg>الموقع</a>
+  <button type="button" class="order" id="btn-open-cart"><svg><use href="#ic-cart"/></svg>سلة الطلبات</button>
 </div>
 
-<div class="floating-cart hidden" id="floating-cart">
-  <img src="images/Firefly_RemoveBackground.png" style="width:20px; height:20px; object-fit:contain;">
+<div class="floating-cart hidden" id="floating-cart" role="button" tabindex="0" aria-label="فتح سلة الطلبات">
+  <svg width="20" height="20" aria-hidden="true"><use href="#ic-cart"/></svg>
   <span class="cart-count" id="cart-count">0</span>
   <span>صنف</span>
 </div>
@@ -529,58 +553,121 @@ footer a.phone { color: var(--primary); font-weight: 700; }
 <div class="size-modal" id="size-modal">
   <div class="size-card">
     <h2 id="size-modal-title">اختر الحجم</h2>
-    <div class="size-options" id="size-options-container">
-      <!-- Size buttons injected here -->
-    </div>
+    <p class="size-item" id="size-item-name"></p>
+    <div class="size-options" id="size-options-container"></div>
+    <button type="button" class="size-cancel" id="size-cancel">إلغاء</button>
   </div>
 </div>
 
 <script>
 (function(){
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.category').forEach(cat => observer.observe(cat));
+  'use strict';
+  var root = document.documentElement;
+  var header = document.querySelector('header');
+  var nav = document.querySelector('.chipnav');
 
-  const links = Array.prototype.slice.call(document.querySelectorAll('.chipnav a'));
-  const sections = links.map(l => document.querySelector(l.getAttribute('href')));
-  if('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if(e.isIntersecting) {
-          const id = '#' + e.target.id;
-          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
-        }
+  function setStickyOffsets(){
+    var h = header.offsetHeight;
+    root.style.setProperty('--header-h', h + 'px');
+    root.style.setProperty('--sticky-h', (h + nav.offsetHeight + 8) + 'px');
+  }
+  setStickyOffsets();
+  window.addEventListener('resize', setStickyOffsets);
+  window.addEventListener('load', setStickyOffsets);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setStickyOffsets);
+
+  var cats = Array.prototype.slice.call(document.querySelectorAll('.category'));
+  if ('IntersectionObserver' in window) {
+    var reveal = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); reveal.unobserve(entry.target); }
+      });
+    }, { threshold: 0.01 });
+    cats.forEach(function(c){ reveal.observe(c); });
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('.chipnav a'));
+    var spy = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        var id = '#' + e.target.id;
+        links.forEach(function(l){
+          var on = l.getAttribute('href') === id;
+          l.classList.toggle('active', on);
+          if (on) {
+            var target = l.offsetLeft - (nav.clientWidth - l.offsetWidth) / 2;
+            nav.scrollTo({ left: target, behavior: 'smooth' });
+          }
+        });
       });
     }, { rootMargin: '-40% 0px -55% 0px' });
-    sections.forEach(s => s && io.observe(s));
+    links.forEach(function(l){
+      var sec = document.querySelector(l.getAttribute('href'));
+      if (sec) spy.observe(sec);
+    });
+  } else {
+    cats.forEach(function(c){ c.classList.add('visible'); });
   }
 })();
 
 (function(){
-  let cart = {}; // { uniqueId: { id, name, price, qty, size } }
-  let pendingItem = null;
+  'use strict';
+  var WHATSAPP = '201039525005';
+  var cart = {}; // uid -> { id, name, price, qty, size }
 
-  const floatingCart = document.getElementById('floating-cart');
-  const cartCountEl = document.getElementById('cart-count');
-  const cartOverlay = document.getElementById('cart-overlay');
-  const cartItemsList = document.getElementById('cart-items-list');
-  const cartTotalEl = document.getElementById('cart-total');
-  const btnOpenCart = document.getElementById('btn-open-cart');
-  const btnCloseCart = document.getElementById('close-cart');
-  const btnClearCart = document.getElementById('clear-cart');
-  const btnConfirmWhatsApp = document.getElementById('btn-confirm-whatsapp');
-  const toast = document.getElementById('toast');
-  const sizeModal = document.getElementById('size-modal');
-  const sizeOptionsContainer = document.getElementById('size-options-container');
+  function $(id){ return document.getElementById(id); }
+  var floatingCart = $('floating-cart');
+  var cartCountEl = $('cart-count');
+  var cartOverlay = $('cart-overlay');
+  var cartItemsList = $('cart-items-list');
+  var cartTotalEl = $('cart-total');
+  var btnConfirm = $('btn-confirm-whatsapp');
+  var toast = $('toast');
+  var sizeModal = $('size-modal');
+  var sizeOptions = $('size-options-container');
+  var sizeItemName = $('size-item-name');
 
-  function updateFloatingCart() {
-    const totalItems = Object.values(cart).reduce((sum, item) => sum + item.qty, 0);
-    if(totalItems > 0) {
+  function esc(t){
+    return String(t).replace(/[&<>"']/g, function(c){
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var items = Array.prototype.slice.call(document.querySelectorAll('.item'));
+  function baseName(el){ return el.getAttribute('data-name') || el.querySelector('.name').textContent.trim(); }
+  function groupOf(el){
+    var grid = el.parentElement;
+    var prev = grid.previousElementSibling;
+    if (prev && prev.classList.contains('group-label')) return prev.textContent.trim();
+    var h = grid.closest('.category').querySelector('h2');
+    return h ? h.textContent.trim() : '';
+  }
+  var counts = {};
+  items.forEach(function(el){ var n = baseName(el); counts[n] = (counts[n] || 0) + 1; });
+  var fullNames = {};
+  items.forEach(function(el){
+    var n = baseName(el);
+    fullNames[el.getAttribute('data-id')] = counts[n] > 1 ? n + ' (' + groupOf(el) + ')' : n;
+  });
+
+  function qtyOf(id){
+    return Object.keys(cart).reduce(function(sum, uid){ return cart[uid].id === id ? sum + cart[uid].qty : sum; }, 0);
+  }
+  function totalItems(){
+    return Object.keys(cart).reduce(function(sum, uid){ return sum + cart[uid].qty; }, 0);
+  }
+  function totalPrice(){
+    return Object.keys(cart).reduce(function(sum, uid){ return sum + cart[uid].price * cart[uid].qty; }, 0);
+  }
+  function isOpen(el){ return el.style.display === 'flex'; }
+  function syncScrollLock(){
+    document.body.classList.toggle('no-scroll', isOpen(cartOverlay) || isOpen(sizeModal));
+  }
+
+  function updateFloatingCart(){
+    var n = totalItems();
+    if (n > 0) {
       floatingCart.classList.remove('hidden');
-      cartCountEl.innerText = totalItems;
+      cartCountEl.textContent = n;
       floatingCart.style.animation = 'none';
       void floatingCart.offsetWidth;
       floatingCart.style.animation = 'cartBounce 0.3s ease-out';
@@ -589,206 +676,169 @@ footer a.phone { color: var(--primary); font-weight: 700; }
     }
   }
 
-  function showToast() {
+  var toastTimer;
+  function showToast(){
     toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2000);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, 1800);
   }
 
-  function renderItemControls(itemEl) {
-    const id = itemEl.getAttribute('data-id');
-    const ctrl = itemEl.querySelector('.item-ctrl');
-
-    const itemInCart = Object.values(cart).find(i => i.id === id);
-
-    if(!itemInCart) {
-      ctrl.innerHTML = `<button class="add-btn">إضافة +</button>`;
+  function renderItemControls(el){
+    var id = el.getAttribute('data-id');
+    var ctrl = el.querySelector('.item-ctrl');
+    var qty = qtyOf(id);
+    var sized = el.hasAttribute('data-sizes');
+    if (sized || qty === 0) {
+      ctrl.innerHTML = '<button type="button" class="add-btn">إضافة +' + (qty ? '<span class="badge">' + qty + '</span>' : '') + '</button>';
     } else {
-      const variants = Object.values(cart).filter(i => i.id === id);
-      if(variants.length === 1) {
-        const variant = variants[0];
-        ctrl.innerHTML = `
-          <div class="qty-control">
-            <button class="qty-btn btn-minus" data-uid="${Object.keys(cart).find(k => cart[k] === variant)}">−</button>
-            <span class="qty-val">${variant.qty}</span>
-            <button class="qty-btn btn-plus" data-uid="${Object.keys(cart).find(k => cart[k] === variant)}">+</button>
-          </div>
-        `;
-      } else {
-        ctrl.innerHTML = `<button class="add-btn">عرض السلة</button>`;
-      }
+      var uid = id + '_default';
+      ctrl.innerHTML = '<div class="qty-control">' +
+        '<button type="button" class="qty-btn btn-minus" data-uid="' + uid + '">−</button>' +
+        '<span class="qty-val">' + qty + '</span>' +
+        '<button type="button" class="qty-btn btn-plus" data-uid="' + uid + '">+</button></div>';
     }
   }
+  function refreshItem(id){
+    var el = document.querySelector('.item[data-id="' + id + '"]');
+    if (el) renderItemControls(el);
+  }
+  function updateAllControls(){ items.forEach(renderItemControls); }
 
-  function updateAllControls() {
-    document.querySelectorAll('.item').forEach(itemEl => renderItemControls(itemEl));
+  function addToCart(el, sizeId, sizeLabel, price){
+    var id = el.getAttribute('data-id');
+    var uid = id + '_' + sizeId;
+    if (cart[uid]) cart[uid].qty++;
+    else cart[uid] = { id: id, name: fullNames[id], price: price, qty: 1, size: sizeLabel };
+    showToast();
+    updateFloatingCart();
+    renderItemControls(el);
+    if (isOpen(cartOverlay)) renderCart();
   }
 
-  function calculateTotal() {
-    return Object.values(cart).reduce((sum, item) => sum + (item.price * item.qty), 0);
+  function changeQty(uid, delta){
+    var entry = cart[uid];
+    if (!entry) return;
+    entry.qty += delta;
+    if (entry.qty <= 0) delete cart[uid];
+    refreshItem(entry.id);
+    updateFloatingCart();
+    if (isOpen(cartOverlay)) renderCart();
   }
 
-  function renderCart() {
-    cartItemsList.innerHTML = '';
-    let total = 0;
+  function renderCart(){
+    var uids = Object.keys(cart);
+    if (!uids.length) {
+      cartItemsList.innerHTML = '<div class="empty-cart">السلة فارغة</div>';
+    } else {
+      cartItemsList.innerHTML = uids.map(function(uid){
+        var it = cart[uid];
+        return '<div class="cart-item">' +
+          '<div class="cart-item-info">' +
+            '<span class="cart-item-name">' + esc(it.name) + '</span>' +
+            (it.size ? '<span class="cart-item-size">' + esc(it.size) + '</span>' : '') +
+            '<span class="cart-item-price">' + it.price + ' ج.م</span>' +
+          '</div>' +
+          '<div class="cart-item-qty">' +
+            '<button type="button" class="qty-btn btn-minus" data-uid="' + esc(uid) + '">−</button>' +
+            '<span class="qty-val">' + it.qty + '</span>' +
+            '<button type="button" class="qty-btn btn-plus" data-uid="' + esc(uid) + '">+</button>' +
+          '</div></div>';
+      }).join('');
+    }
+    cartTotalEl.textContent = totalPrice();
+    btnConfirm.disabled = !uids.length;
+  }
 
-    Object.entries(cart).forEach(([uniqueId, item]) => {
-      const div = document.createElement('div');
-      div.className = 'cart-item';
-      div.innerHTML = `
-        <div class="cart-item-info">
-          <span class="cart-item-name">${item.name}</span>
-          <span class="cart-item-size">${item.size}</span>
-          <span class="cart-item-price">${item.price} ج.م</span>
-        </div>
-        <div class="cart-item-qty">
-          <button class="qty-btn btn-minus" data-uid="${uniqueId}">−</button>
-          <span class="qty-val">${item.qty}</span>
-          <button class="qty-btn btn-plus" data-uid="${uniqueId}">+</button>
-        </div>
-      `;
-      cartItemsList.appendChild(div);
-      total += item.price * item.qty;
+  function openCart(){ renderCart(); cartOverlay.style.display = 'flex'; syncScrollLock(); }
+  function closeCart(){ cartOverlay.style.display = 'none'; syncScrollLock(); }
+
+  function openSizeModal(el){
+    sizeItemName.textContent = fullNames[el.getAttribute('data-id')];
+    sizeOptions.innerHTML = '';
+    JSON.parse(el.getAttribute('data-sizes')).forEach(function(sz){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'size-btn';
+      b.textContent = sz.label + ' — ' + sz.price + ' ج.م';
+      b.addEventListener('click', function(){
+        addToCart(el, sz.id, sz.label, sz.price);
+        closeSizeModal();
+      });
+      sizeOptions.appendChild(b);
     });
-
-    cartTotalEl.innerText = total;
+    sizeModal.style.display = 'flex';
+    syncScrollLock();
+  }
+  function closeSizeModal(){
+    sizeModal.style.display = 'none';
+    syncScrollLock();
   }
 
-  document.addEventListener('click', (e) => {
-    const itemEl = e.target.closest('.item');
-    if(!itemEl) return;
-
-    const id = itemEl.getAttribute('data-id');
-    const name = itemEl.querySelector('.name').innerText;
-    const price = parseInt(itemEl.getAttribute('data-price')) || 0;
-    const hasSizes = itemEl.getAttribute('data-has-sizes') === 'true';
-
-    if(e.target.classList.contains('add-btn')) {
-      if(hasSizes) {
-        const sizesData = JSON.parse(itemEl.getAttribute('data-sizes'));
-        pendingItem = { id, name, price, sizes: sizesData };
-
-        sizeOptionsContainer.innerHTML = '';
-        sizesData.forEach(s => {
-          const btn = document.createElement('button');
-          btn.className = 'size-btn';
-          btn.innerText = s.label;
-          btn.setAttribute('data-size-label', s.label);
-          btn.setAttribute('data-size-id', s.id);
-          btn.addEventListener('click', () => selectSize(s.label, s.id));
-          sizeOptionsContainer.appendChild(btn);
-        });
-
-        sizeModal.style.display = 'flex';
+  document.addEventListener('click', function(e){
+    var itemEl = e.target.closest('.item');
+    if (!itemEl) return;
+    var qtyBtn = e.target.closest('.qty-btn');
+    if (qtyBtn) {
+      changeQty(qtyBtn.getAttribute('data-uid'), qtyBtn.classList.contains('btn-plus') ? 1 : -1);
+      return;
+    }
+    if (e.target.closest('.add-btn')) {
+      if (itemEl.hasAttribute('data-sizes')) {
+        openSizeModal(itemEl);
       } else {
-        const uid = `${id}_default`;
-        if(!cart[uid]) {
-          cart[uid] = { id, name, price, qty: 1, size: '' };
-        } else {
-          cart[uid].qty++;
-        }
-        showToast();
-        updateFloatingCart();
-        renderItemControls(itemEl);
-      }
-    } else if(e.target.classList.contains('btn-plus')) {
-      const uid = e.target.getAttribute('data-uid');
-      if(uid && cart[uid]) {
-        cart[uid].qty++;
-        updateFloatingCart();
-        renderItemControls(itemEl);
-        if(cartOverlay.style.display === 'flex') renderCart();
-      }
-    } else if(e.target.classList.contains('btn-minus')) {
-      const uid = e.target.getAttribute('data-uid');
-      if(uid && cart[uid]) {
-        cart[uid].qty--;
-        if(cart[uid].qty <= 0) delete cart[uid];
-        updateFloatingCart();
-        renderItemControls(itemEl);
-        if(cartOverlay.style.display === 'flex') renderCart();
+        addToCart(itemEl, 'default', '', parseInt(itemEl.getAttribute('data-price'), 10) || 0);
       }
     }
   });
 
-  function selectSize(label, sizeId) {
-    if(pendingItem) {
-      const { id, name, price } = pendingItem;
-      const uid = `${id}_${sizeId}`;
-
-      if(!cart[uid]) {
-        cart[uid] = { id, name, price, qty: 1, size: label };
-      } else {
-        cart[uid].qty++;
-      }
-
-      showToast();
-      updateFloatingCart();
-
-      const itemEl = document.querySelector(`.item[data-id="${id}"]`);
-      renderItemControls(itemEl);
-
-      sizeModal.style.display = 'none';
-      pendingItem = null;
-    }
-  }
-
-  btnOpenCart.addEventListener('click', () => {
-    renderCart();
-    cartOverlay.style.display = 'flex';
+  cartItemsList.addEventListener('click', function(e){
+    var qtyBtn = e.target.closest('.qty-btn');
+    if (!qtyBtn) return;
+    changeQty(qtyBtn.getAttribute('data-uid'), qtyBtn.classList.contains('btn-plus') ? 1 : -1);
   });
 
-  floatingCart.addEventListener('click', () => {
-    renderCart();
-    cartOverlay.style.display = 'flex';
+  $('btn-open-cart').addEventListener('click', openCart);
+  floatingCart.addEventListener('click', openCart);
+  floatingCart.addEventListener('keydown', function(e){
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCart(); }
+  });
+  $('close-cart').addEventListener('click', closeCart);
+  cartOverlay.addEventListener('click', function(e){ if (e.target === cartOverlay) closeCart(); });
+  $('size-cancel').addEventListener('click', closeSizeModal);
+  sizeModal.addEventListener('click', function(e){ if (e.target === sizeModal) closeSizeModal(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key !== 'Escape') return;
+    if (isOpen(sizeModal)) closeSizeModal();
+    else if (isOpen(cartOverlay)) closeCart();
   });
 
-  btnCloseCart.addEventListener('click', () => {
-    cartOverlay.style.display = 'none';
-  });
-
-  btnClearCart.addEventListener('click', () => {
+  $('clear-cart').addEventListener('click', function(){
+    if (!totalItems()) return;
+    if (!confirm('هل تريد تفريغ السلة؟')) return;
     cart = {};
     updateFloatingCart();
     updateAllControls();
     renderCart();
   });
 
-  cartItemsList.addEventListener('click', (e) => {
-    const uid = e.target.getAttribute('data-uid');
-    if(!uid) return;
+  btnConfirm.addEventListener('click', function(){
+    var uids = Object.keys(cart);
+    if (!uids.length) { alert('السلة فارغة!'); return; }
 
-    if(e.target.classList.contains('btn-plus')) {
-      cart[uid].qty++;
-    } else if(e.target.classList.contains('btn-minus')) {
-      cart[uid].qty--;
-      if(cart[uid].qty <= 0) delete cart[uid];
-    }
-    updateFloatingCart();
-    updateAllControls();
-    renderCart();
-  });
-
-  btnConfirmWhatsApp.addEventListener('click', () => {
-    if(Object.keys(cart).length === 0) {
-      alert('السلة فارغة!');
-      return;
-    }
-
-    let total = calculateTotal();
-    let message = `مرحباً، أود تقديم الطلب التالي:\n\n`;
-
-    Object.values(cart).forEach((item, index) => {
-      const sizeText = item.size ? ` — ${item.size}` : '';
-      message += `${index + 1}. ${item.name}${sizeText} × ${item.qty} (${item.price * item.qty} ج.م)\n`;
+    var message = 'مرحباً، أود تقديم الطلب التالي:\n\n';
+    uids.forEach(function(uid, index){
+      var it = cart[uid];
+      var sizeText = it.size ? ' — ' + it.size : '';
+      message += (index + 1) + '. ' + it.name + sizeText + ' × ' + it.qty + ' (' + (it.price * it.qty) + ' ج.م)\n';
     });
+    message += '\n--------------------------\n';
+    message += '*الإجمالي: ' + totalPrice() + ' ج.م*\n';
+    message += 'طريقة الاستلام: استلام من الفرع\n\n';
+    message += 'شكراً لكم.';
 
-    message += `\n--------------------------\n`;
-    message += `*الإجمالي: ${total} ج.م*\n`;
-    message += `طريقة الاستلام: استلام من الفرع\n\n`;
-    message += `شكراً لكم.`;
-
-    const encodedMsg = encodeURIComponent(message);
-    window.open(`https://wa.me/201286086219?text=${encodedMsg}`, '_blank');
+    var url = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(message);
+    var w = window.open(url, '_blank');
+    if (!w) window.location.href = url;
   });
 })();
 </script>
